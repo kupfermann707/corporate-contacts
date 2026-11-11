@@ -30,6 +30,9 @@
 - **Интерактивные чипсы вызова**: быстрый набор номера в один клик (`tel:`), открытие почтового клиента (`mailto:`) или копирование реквизитов с всплывающим уведомлением (Toast).
 - **REST API**: быстрые JSON-эндпоинты `/api/contacts` и `/api/status` для интеграции с IP-АТС (Asterisk, FreePBX).
 
+<img width="1163" height="918" alt="image" src="https://github.com/user-attachments/assets/c7f5d0b4-1819-489a-aa13-f5b0b99f22d0" />
+
+
 ---
 
 ## 🛡️ Безопасность и соответствие 152-ФЗ
