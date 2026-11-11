@@ -49,8 +49,14 @@
 | **Журнал аудита доступа** | Протоколирование всех событий (входы, отказы в авторизации, изменение статусов) в `/var/log/corporate-contacts/audit.log` с правами `0600`. | Ст. 19 (контроль фактов доступа) |
 | **Шифрование настроек** | Пароли к БД и секретные ключи TOTP шифруются на диске алгоритмом ARX-512 в файле `settings.json`. | Защита данных «at rest» |
 
-<img width="388" height="294" alt="image" src="https://github.com/user-attachments/assets/bbf4ddfd-67ea-43dd-a8f4-8d6d01fccf14" /> <img width="446" height="155" alt="image" src="https://github.com/user-attachments/assets/51f0f956-4550-44f5-bd8f-277ab2b390af" />
+Разрешены только локальные и корпоративные подсети:
+ - 127.0.0.1 (Loopback / локальный ПК)
+ - 10.0.0.0/8 (Корпоративные сети класса A)
+ - 172.16.0.0/12 (Корпоративные подсети класса B)
+ - 192.168.0.0/16 (Офисные локальные сети класса C)
+ - fe80:: / fc00:: (Локальные IPv6-контуры)
 
+<img width="388" height="294" alt="image" src="https://github.com/user-attachments/assets/bbf4ddfd-67ea-43dd-a8f4-8d6d01fccf14" />
 
 ---
 
