@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Card Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3584e4" />
+      <stop offset="100%" stop-color="#1c71d8" />
+    </linearGradient>
+
+    <!-- Sidebar / Spine Gradient -->
+    <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a5fb4" />
+      <stop offset="100%" stop-color="#1c71d8" />
+    </linearGradient>
+
+    <!-- Badge / Avatar Gradient -->
+    <linearGradient id="avatarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#62a0ea" />
+      <stop offset="100%" stop-color="#3584e4" />
+    </linearGradient>
+
+    <!-- Tab Colors -->
+    <linearGradient id="tabKorobovo" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#33d17a" />
+      <stop offset="100%" stop-color="#26a269" />
+    </linearGradient>
+    <linearGradient id="tabEgorievsk" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#f6d32d" />
+      <stop offset="100%" stop-color="#e5a50a" />
+    </linearGradient>
+
+    <!-- Soft Drop Shadow -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.25" flood-color="#000000" />
+    </filter>
+  </defs>
+
+  <!-- Main Address Book Body with Shadow -->
+  <g filter="url(#dropShadow)">
+    <rect x="20" y="14" width="88" height="100" rx="14" fill="url(#bgGrad)" />
+  </g>
+
+  <!-- Directory Tabs on the right -->
+  <rect x="104" y="28" width="8" height="20" rx="3" fill="url(#tabKorobovo)" />
+  <rect x="104" y="54" width="8" height="20" rx="3" fill="url(#tabEgorievsk)" />
+  <rect x="104" y="80" width="8" height="20" rx="3" fill="#99c1f1" />
+
+  <!-- Book Spine / Binding Left Strip -->
+  <path d="M 20 28 C 20 20.268 26.268 14 34 14 L 38 14 L 38 114 L 34 114 C 26.268 114 20 107.732 20 100 Z" fill="url(#spineGrad)" />
+
+  <!-- Spine Rings / Notches -->
+  <rect x="23" y="32" width="10" height="4" rx="2" fill="#ffffff" opacity="0.75" />
+  <rect x="23" y="50" width="10" height="4" rx="2" fill="#ffffff" opacity="0.75" />
+  <rect x="23" y="68" width="10" height="4" rx="2" fill="#ffffff" opacity="0.75" />
+  <rect x="23" y="86" width="10" height="4" rx="2" fill="#ffffff" opacity="0.75" />
+
+  <!-- Center Contact Avatar Emblem -->
+  <circle cx="70" cy="54" r="22" fill="#ffffff" />
+  <!-- User Head -->
+  <circle cx="70" cy="48" r="8" fill="#1c71d8" />
+  <!-- User Shoulders -->
+  <path d="M 55 68 C 55 60 62 58 70 58 C 78 58 85 60 85 68 Z" fill="#1c71d8" />
+
+  <!-- Phone Handset Badge bottom-right of avatar -->
+  <g transform="translate(62, 78)">
+    <circle cx="16" cy="16" r="14" fill="#ffffff" />
+    <circle cx="16" cy="16" r="12" fill="#2ec27e" />
+    <!-- Phone handset symbol -->
+    <path d="M 12 11 C 11.5 11 11 11.5 11 12 C 11 17 15 21 20 21 C 20.5 21 21 20.5 21 20 L 20 17.5 C 19.8 17.1 19.3 17 19 17.2 L 17.5 18 C 15.5 17 15 16.5 14 14.5 L 14.8 13 C 15 12.7 14.9 12.2 14.5 12 Z" fill="#ffffff" />
+  </g>
+</svg>

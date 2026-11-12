@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Corporate Contacts — Паспорт и описание системы</title>
+  <style>
+    :root {
+      --bg: #121316;
+      --surface-1: #1a1c1e;
+      --surface-2: #222428;
+      --surface-3: #2c2e33;
+      --surface-card: #1e2024;
+      --primary: #a8c7fa;
+      --primary-container: #004a77;
+      --on-primary-container: #c2e7ff;
+      --text: #e2e2e6;
+      --text-muted: #c4c7c5;
+      --text-dim: #8e918f;
+      --outline: #444746;
+      --success: #6dd58c;
+      --success-container: #0d381e;
+      --warning: #fbc02d;
+      --danger: #f2b8b5;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --mono: "JetBrains Mono", "Fira Code", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.6;
+      padding: 32px 16px 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, rgba(0, 74, 119, 0.4) 0%, rgba(30, 32, 36, 0.8) 100%);
+      border: 1px solid var(--outline);
+      border-radius: 28px;
+      padding: 40px 32px;
+      margin-bottom: 32px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .hero-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .hero-icon svg {
+      width: 32px;
+      height: 32px;
+    }
+
+    .hero-title-group h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+
+    .hero-title-group p {
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .badges-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .badge-primary {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .badge-success {
+      background: var(--success-container);
+      color: var(--success);
+      border: 1px solid rgba(109, 213, 140, 0.3);
+    }
+
+    .badge-neutral {
+      background: var(--surface-3);
+      color: var(--text-muted);
+    }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .metric-card {
+      background: var(--surface-card);
+      border-radius: 20px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--primary);
+    }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Tabs */
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--outline);
+      padding-bottom: 8px;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 15px;
+      font-weight: 600;
+      padding: 10px 20px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      background: var(--surface-2);
+      color: var(--text);
+    }
+
+    .tab-btn.active {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section & Cards */
+    .section-card {
+      background: var(--surface-card);
+      border-radius: 24px;
+      padding: 32px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--surface-3);
+      color: var(--primary);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    /* Features 2-column Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .feature-item {
+      background: var(--surface-2);
+      border-radius: 16px;
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .feature-item h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--primary);
+    }
+
+    .feature-item p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Compliance Table */
+    .table-container {
+      overflow-x: auto;
+      margin-top: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--outline);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      text-align: left;
+    }
+
+    th {
+      background: var(--surface-3);
+      color: var(--text);
+      font-weight: 600;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--outline);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: var(--success-container);
+      color: var(--success);
+    }
+
+    /* Architecture / Modules Grid */
+    .module-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .module-item {
+      background: var(--surface-2);
+      border-radius: 16px;
+      padding: 18px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .module-name {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .module-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: var(--surface-3);
+      border-radius: 8px;
+      color: var(--text-dim);
+    }
+
+    .module-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Code blocks */
+    .code-box {
+      background: #090a0c;
+      border: 1px solid var(--outline);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin: 12px 0 20px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: #9cdcfe;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .code-box code {
+      word-break: break-all;
+    }
+
+    .copy-btn {
+      background: var(--surface-3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--text);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: var(--surface-3);
+      color: var(--text);
+      padding: 12px 24px;
+      border-radius: 24px;
+      border: 1px solid var(--outline);
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 9999;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--text-dim);
+      font-size: 13px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Hero Header -->
+    <header class="hero">
+      <div class="hero-top">
+        <div class="hero-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12H6v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1z"/>
+          </svg>
+        </div>
+        <div class="hero-title-group">
+          <h1>Corporate Contacts (Справочник сотрудников)</h1>
+          <p>Защищённая информационная система ведения корпоративных контактов и быстрого поиска</p>
+        </div>
+      </div>
+
+      <div class="badges-row">
+        <a href="https://github.com/daniilsukhanoff-hub/corporate-contacts" target="_blank" rel="noopener noreferrer" class="badge badge-primary" style="text-decoration: none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub: daniilsukhanoff-hub/corporate-contacts
+        </a>
+        <span class="badge badge-primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14.5v-9l6 4.5-6 4.5z"/></svg>
+          Rust 2021 Edition
+        </span>
+        <span class="badge badge-success">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          152-ФЗ HTTPS / TLS 1.3
+        </span>
+        <span class="badge badge-neutral">🖥️ GTK4 &amp; Libadwaita 1.5</span>
+        <span class="badge badge-neutral">🎨 Google Material 3 Dark Theme</span>
+        <span class="badge badge-neutral">🐘 PostgreSQL Native Wire</span>
+        <span class="badge badge-neutral">📦 Debian Package (.deb)</span>
+      </div>
+    </header>
+
+    <!-- Key Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">35 / 35</div>
+        <div class="metric-label">Автоматических тестов пройдено в офлайн-режиме (100%)</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">1.2 МБ</div>
+        <div class="metric-label">Размер бинарника с LTO, сборкой мусора и оптимизацией</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">0 мс</div>
+        <div class="metric-label">Сверхбыстрый живой отклик поиска без сетевых задержек</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">0600</div>
+        <div class="metric-label">Защищенный аудит-лог (/var/log/corporate-contacts/audit.log)</div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('tab-features')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>
+        Возможности и функции
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-security')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 6h2v2h-2V7zm0 4h2v6h-2v-6z"/></svg>
+        Безопасность и 152-ФЗ
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-arch')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        Архитектура и состав модулей
+      </button>
+      <button class="tab-btn" onclick="switchTab('tab-deploy')">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+        Установка и команды
+      </button>
+    </nav>
+
+    <!-- TAB 1: Features -->
+    <div id="tab-features" class="tab-content active">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H8V4h12v12z"/></svg>
+          </div>
+          <h2 class="section-title">Десктопное приложение (GTK4 / Libadwaita)</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-item">
+            <h3>⚡ Мгновенный полнотекстовый поиск</h3>
+            <p>Живая фильтрация контактов на лету по любому полю: ФИО, должность, отдел, локация, внутренний телефон, мобильный, кабинет или этаж.</p>
+          </div>
+          <div class="feature-item">
+            <h3>🏢 Иерархические фильтры</h3>
+            <p>Выпадающие списки филиалов и отделов. Динамический подсчет количества отображаемых записей.</p>
+          </div>
+          <div class="feature-item">
+            <h3>👤 Полный цикл управления контактами</h3>
+            <p>Добавление, редактирование, просмотр деталей с удобным копированием реквизитов и форматированием номеров телефонов.</p>
+          </div>
+          <div class="feature-item">
+            <h3>👁️ Мягкое скрытие (Soft Delete)</h3>
+            <p>Возможность скрыть сотрудника из публичного веб-справочника без физического удаления записи в БД с последующим восстановлением.</p>
+          </div>
+          <div class="feature-item">
+            <h3>📊 Умный импорт из CSV</h3>
+            <p>Интеллектуальный анализатор колонок (Field Mapping) с автоматическим сопоставлением русских и английских названий полей.</p>
+          </div>
+          <div class="feature-item">
+            <h3>🔑 Двухфакторная аутентификация (2FA)</h3>
+            <p>Встроенный генератор TOTP (RFC 6238) с нативной генерацией QR-кодов в SVG без внешних облачных сервисов.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <h2 class="section-title">Встроенный веб-сервер и мобильный UI (Material 3 Dark)</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-item">
+            <h3>📱 Адаптивный Mobile-First дизайн</h3>
+            <p>Разработан строго по спецификациям Google Material Design 3 (Material You): скругления, Tonal Elevation, отсутствие жестких рамок.</p>
+          </div>
+          <div class="feature-item">
+            <h3>📞 Интерактивные чипсы действий</h3>
+            <p>Клик по внутреннему или мобильному телефону инициирует звонок или копирует номер с красивым всплывающим Toast-уведомлением.</p>
+          </div>
+          <div class="feature-item">
+            <h3>🔒 Автономность без CDN</h3>
+            <p>Все скрипты, стили и SVG-иконки внедрены в бинарник (Single Page Application). Работает в изолированной сети без доступа в Интернет.</p>
+          </div>
+          <div class="feature-item">
+            <h3>⚡ Высокопроизводительный REST API</h3>
+            <p>Эндпоинты <code>/api/contacts</code> и <code>/api/status</code> для интеграции с корпоративными IP-АТС (Asterisk, FreePBX) и другими ИС.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: Security & 152-FZ -->
+    <div id="tab-security" class="tab-content">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon" style="color: var(--success);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+          </div>
+          <h2 class="section-title">Соответствие требованиям 152-ФЗ РФ и Приказу ФСТЭК № 21</h2>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 16px;">
+          В программе реализованы обязательные организационно-технические меры защиты персональных данных при их обработке в информационных системах (ИСПДн до 1-го уровня защищенности включительно).
+        </p>
+
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Требование безопасности</th>
+                <th>Нормативное основание</th>
+                <th>Техническая реализация в приложении</th>
+                <th>Статус</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Шифрование канала связи (HTTPS)</strong></td>
+                <td>Ст. 19 152-ФЗ, Приказ ФСТЭК № 21</td>
+                <td>Нативный TLS 1.2/1.3 сервер через GIO TLS на порту 8443. Автогенерация 2048-битных RSA сертификатов (OpenSSL).</td>
+                <td><span class="status-pill">✓ Реализовано</span></td>
+              </tr>
+              <tr>
+                <td><strong>Контроль сетевого периметра</strong></td>
+                <td>Требования к сетевой изоляции ИСПДн</td>
+                <td>Сервер проверяет входящий IP-адрес: доступ открыт только для доверенных адресов интранета (RFC 1918 / Loopback). Внешние IP блокируются с кодом 403.</td>
+                <td><span class="status-pill">✓ Реализовано</span></td>
+              </tr>
+              <tr>
+                <td><strong>Защита от массового скрейпинга</strong></td>
+                <td>Ст. 19 (нейтрализация угроз ПДн)</td>
+                <td>Встроенный алгоритм Rate Limiter (лимит до 150 запросов в минуту с одного IP) для пресечения выгрузки базы ботами.</td>
+                <td><span class="status-pill">✓ Реализовано</span></td>
+              </tr>
+              <tr>
+                <td><strong>Маскирование личных данных</strong></td>
+                <td>Ст. 7 и Ст. 9 152-ФЗ (Конфиденциальность)</td>
+                <td>Флаг <code>is_personal_mobile</code>: личные номера скрыты маской <code>+7 999 •••-••-67</code> и открываются только по осознанному клику.</td>
+                <td><span class="status-pill">✓ Реализовано</span></td>
+              </tr>
+              <tr>
+                <td><strong>Автоблокировка экрана (Lockout)</strong></td>
+                <td>Режим «чистых экранов» (ФСТЭК)</td>
+                <td>После 10 минут неактивности веб-интерфейс блокируется модальным оверлеем для защиты от подглядывания третьими лицами.</td>
+                <td><span class="status-pill">✓ Реализовано</span></td>
+              </tr>
+              <tr>
+                <td><strong>Журналирование аудита</strong></td>
+                <td>Ст. 19 (контроль фактов доступа к ПДн)</td>
+                <td>Запись критических событий в <code>/var/log/corporate-contacts/audit.log</code> с правами <code>0600</code> и временными метками ISO 8601.</td>
+                <td><span class="status-pill">✓ Реализовано</span></td>
+              </tr>
+              <tr>
+                <td><strong>Шифрование настроек и паролей БД</strong></td>
+                <td>Защита учетных записей «at rest»</td>
+                <td>Шифрование конфигурационного файла <code>settings.json</code> с использованием ARX-512 sponge криптоалгоритма.</td>
+                <td><span class="status-pill">✓ Реализовано</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Architecture & Modules -->
+    <div id="tab-arch" class="tab-content">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <h2 class="section-title">Состав модулей кодовой базы</h2>
+        </div>
+        <p style="color: var(--text-muted); margin-bottom: 16px;">
+          Архитектура разделена на независимые, легко тестируемые модули без циклических зависимостей:
+        </p>
+
+        <div class="module-list">
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/server.rs</span>
+              <span class="module-tag">HTTPS &amp; Web</span>
+            </div>
+            <div class="module-desc">Встроенный веб-сервер на GIO TLS, маршрутизатор REST API, генератор SPA интерфейса Material 3 Dark Theme, Rate Limiter.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/audit.rs</span>
+              <span class="module-tag">Безопасность</span>
+            </div>
+            <div class="module-desc">Журнал аудита событий безопасности 152-ФЗ с фиксацией IP, типа операции и строгими правами доступа 0600.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/crypto.rs</span>
+              <span class="module-tag">Криптография</span>
+            </div>
+            <div class="module-desc">Криптографические примитивы на базе 512-битной ARX-перестановки, генерация ключей и шифрование паролей БД.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/totp.rs &amp; qr.rs</span>
+              <span class="module-tag">2FA / TOTP</span>
+            </div>
+            <div class="module-desc">Генерация одноразовых паролей RFC 6238 и нативный рендеринг векторных SVG QR-кодов без внешних зависимостей.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/db/wire.rs &amp; libpq.rs</span>
+              <span class="module-tag">База данных</span>
+            </div>
+            <div class="module-desc">Нативная реализация сетевого протокола PostgreSQL Wire Protocol на чистых сокетах и пул соединений с fallback кэшем.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/field_mapping.rs</span>
+              <span class="module-tag">Импорт CSV</span>
+            </div>
+            <div class="module-desc">Интеллектуальное сопоставление заголовков таблиц CSV со списком синонимов на русском и английском языках.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/ui/window.rs</span>
+              <span class="module-tag">GTK4 UI</span>
+            </div>
+            <div class="module-desc">Главное окно программы: AdwNavigationSplitView, быстрый поиск, горячие клавиши, выпадающие фильтры.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/ui/settings_dialog.rs</span>
+              <span class="module-tag">Настройки</span>
+            </div>
+            <div class="module-desc">Интерфейс управления параметрами: включение HTTPS, пути к TLS-сертификатам, генерация ключей, подключение к БД.</div>
+          </div>
+
+          <div class="module-item">
+            <div class="module-name">
+              <span>src/model.rs &amp; storage.rs</span>
+              <span class="module-tag">Модель данных</span>
+            </div>
+            <div class="module-desc">Структура Contact с поддержкой 152-ФЗ полей, сериализация в JSON и локальное энергонезависимое хранение.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: Deployment & Commands -->
+    <div id="tab-deploy" class="tab-content">
+      <div class="section-card">
+        <div class="section-header">
+          <div class="section-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+          </div>
+          <h2 class="section-title">Сборка, установка и эксплуатация</h2>
+        </div>
+
+        <h3 style="font-size: 16px; margin: 20px 0 8px; color: var(--text);">1. Установка готового Debian (.deb) пакета</h3>
+        <p style="color: var(--text-muted); font-size: 14px;">
+          Пакет содержит оптимизированный релизный бинарник, десктопный ярлык, масштабируемые SVG-иконки и скрипты инициализации каталогов аудита.
+        </p>
+        <div class="code-box">
+          <code>sudo dpkg -i corporate-contacts_1.0.0_amd64.deb</code>
+          <button class="copy-btn" onclick="copyText('sudo dpkg -i corporate-contacts_1.0.0_amd64.deb')">Скопировать</button>
+        </div>
+
+        <h3 style="font-size: 16px; margin: 20px 0 8px; color: var(--text);">2. Запуск полного автономного тестирования (35 тестов)</h3>
+        <div class="code-box">
+          <code>cargo test --offline</code>
+          <button class="copy-btn" onclick="copyText('cargo test --offline')">Скопировать</button>
+        </div>
+
+        <h3 style="font-size: 16px; margin: 20px 0 8px; color: var(--text);">3. Компиляция релизной версии</h3>
+        <div class="code-box">
+          <code>make release &amp;&amp; make deb</code>
+          <button class="copy-btn" onclick="copyText('make release && make deb')">Скопировать</button>
+        </div>
+
+        <h3 style="font-size: 16px; margin: 20px 0 8px; color: var(--text);">4. Просмотр журнала аудита безопасности 152-ФЗ</h3>
+        <div class="code-box">
+          <code>sudo tail -f /var/log/corporate-contacts/audit.log</code>
+          <button class="copy-btn" onclick="copyText('sudo tail -f /var/log/corporate-contacts/audit.log')">Скопировать</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>Corporate Contacts • Разработано на Rust, GTK4 &amp; Material 3 • Полное соответствие 152-ФЗ РФ</p>
+      <p style="margin-top: 8px;">Автор: <a href="https://github.com/daniilsukhanoff-hub/corporate-contacts" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">Даниил Суханов (daniilsukhanoff-hub)</a> • Репозиторий: <a href="https://github.com/daniilsukhanoff-hub/corporate-contacts" target="_blank" rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">https://github.com/daniilsukhanoff-hub/corporate-contacts</a></p>
+    </footer>
+
+  </div>
+
+  <div id="toast" class="toast">Команда скопирована в буфер обмена</div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      event.currentTarget.classList.add('active');
+      const target = document.getElementById(tabId);
+      if (target) {
+        target.classList.add('active');
+      }
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Команда скопирована: ' + text);
+      }).catch(() => {
+        showToast('Скопировано');
+      });
+    }
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.add('show');
+      setTimeout(() => {
+        t.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
