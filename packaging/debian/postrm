@@ -1,0 +1,43 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    # 1. Удаление системных директорий и временных файлов
+    rm -rf /usr/share/corporate-contacts
+    rm -rf /var/lib/corporate-contacts 2>/dev/null || true
+    rm -rf /var/log/corporate-contacts 2>/dev/null || true
+    rm -rf /tmp/corporate-contacts* 2>/dev/null || true
+
+    # 2. Полная очистка пользовательских данных и конфигураций для всех учетных записей
+    # Удаляет сохраненные/импортированные базы data.json и settings.json
+    if which getent >/dev/null 2>&1; then
+        getent passwd | awk -F: '$3 >= 1000 || $3 == 0 { print $6 }' | while read -r user_home; do
+            if [ -n "$user_home" ] && [ -d "$user_home" ]; then
+                rm -rf "$user_home/.local/share/corporate-contacts"
+                rm -rf "$user_home/.config/corporate-contacts"
+                rm -rf "$user_home/.cache/corporate-contacts"
+            fi
+        done
+    fi
+
+    for user_home in /home/* /root; do
+        if [ -d "$user_home" ]; then
+            rm -rf "$user_home/.local/share/corporate-contacts"
+            rm -rf "$user_home/.config/corporate-contacts"
+            rm -rf "$user_home/.cache/corporate-contacts"
+        fi
+    done
+
+    # 3. Обновление кэшей окружения рабочего стола
+    if which update-desktop-database >/dev/null 2>&1; then
+        update-desktop-database -q /usr/share/applications || true
+    fi
+    if which gtk-update-icon-cache >/dev/null 2>&1; then
+        gtk-update-icon-cache -q -t -f /usr/share/icons/hicolor || true
+    fi
+    if which appstreamcli >/dev/null 2>&1; then
+        appstreamcli refresh-cache --force >/dev/null 2>&1 || true
+    fi
+fi
+
+exit 0

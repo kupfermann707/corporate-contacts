@@ -7,10 +7,6 @@
 [![Tests](https://img.shields.io/badge/Tests-35%2F35_Passed-brightgreen.svg)](#тестирование)
 [![Package](https://img.shields.io/badge/Package-.deb_AMD64-red.svg?logo=debian)](#быстрый-старт)
 
-<img width="1173" height="878" alt="image" src="https://github.com/user-attachments/assets/591ae9e2-5e5c-4271-acda-4cf98bc38081" />
-
-
-
 **Corporate Contacts** — защищённая корпоративная адресная книга и телефонный справочник сотрудников. Приложение сочетает нативный десктопный клиент на **Rust / GTK4 / Libadwaita**, встроенный защищённый веб-сервер **HTTPS (TLS 1.2/1.3)** с интерфейсом в стиле **Google Material 3 Dark Theme**, прямую синхронизацию с **PostgreSQL** по нативному Wire-протоколу и полный комплекс технических мер защиты по **152-ФЗ «О персональных данных»** (Приказ ФСТЭК № 21).
 
 ---
@@ -27,11 +23,8 @@
 ### 2. Встроенный веб-сервер и мобильный интерфейс (Material 3 Dark Theme)
 - **Автономный Single Page Application**: веб-интерфейс компилируется прямо в исполняемый файл приложения и работает в полностью закрытой локальной сети без внешних CDN.
 - **Стиль Google Material You**: пастельная палитра Dark Theme, Tonal Elevation поверхностей, овальный поисковый бар (Search Bar Pill) и компактные бейджи локаций.
-- **Интерактивные чипы вызова**: быстрый набор номера в один клик (`tel:`), открытие почтового клиента (`mailto:`) или копирование реквизитов с всплывающим уведомлением (Toast).
+- **Интерактивные чипсы вызова**: быстрый набор номера в один клик (`tel:`), открытие почтового клиента (`mailto:`) или копирование реквизитов с всплывающим уведомлением (Toast).
 - **REST API**: быстрые JSON-эндпоинты `/api/contacts` и `/api/status` для интеграции с IP-АТС (Asterisk, FreePBX).
-
-<img width="1163" height="918" alt="image" src="https://github.com/user-attachments/assets/c7f5d0b4-1819-489a-aa13-f5b0b99f22d0" />
-
 
 ---
 
@@ -48,15 +41,6 @@
 | **Автоблокировка экрана** | При неактивности пользователя более 10 минут веб-экран блокируется оверлеем для защиты от несанкционированного просмотра коллегами. | Режим чистых экранов |
 | **Журнал аудита доступа** | Протоколирование всех событий (входы, отказы в авторизации, изменение статусов) в `/var/log/corporate-contacts/audit.log` с правами `0600`. | Ст. 19 (контроль фактов доступа) |
 | **Шифрование настроек** | Пароли к БД и секретные ключи TOTP шифруются на диске алгоритмом ARX-512 в файле `settings.json`. | Защита данных «at rest» |
-
-Разрешены только локальные и корпоративные подсети:
- - 127.0.0.1 (Loopback / локальный ПК)
- - 10.0.0.0/8 (Корпоративные сети класса A)
- - 172.16.0.0/12 (Корпоративные подсети класса B)
- - 192.168.0.0/16 (Офисные локальные сети класса C)
- - fe80:: / fc00:: (Локальные IPv6-контуры)
-
-<img width="388" height="294" alt="image" src="https://github.com/user-attachments/assets/bbf4ddfd-67ea-43dd-a8f4-8d6d01fccf14" />
 
 ---
 
@@ -124,7 +108,7 @@ sudo dpkg -i corporate-contacts_1.0.0_amd64.deb
 sudo apt update && sudo apt install -y build-essential libgtk-4-dev libadwaita-1-dev libpq-dev openssl
 
 # Клонирование репозитория
-git clone https://github.com/your-username/corporate-contacts.git
+git clone https://github.com/daniilsukhanoff-hub/corporate-contacts.git
 cd corporate-contacts
 
 # Запуск в режиме разработки
@@ -174,5 +158,14 @@ xdg-open overview.html
 ---
 
 ## 📄 Лицензия
-
+ 
 Распространяется под свободной лицензией MIT. Подробности в файле [LICENSE](LICENSE).
+
+---
+
+## 👨‍💻 Автор
+
+- **Разработчик**: [Даниил Суханов (daniilsukhanoff-hub)](https://github.com/daniilsukhanoff-hub)
+- **Репозиторий проекта**: [https://github.com/daniilsukhanoff-hub/corporate-contacts](https://github.com/daniilsukhanoff-hub/corporate-contacts)
+- **Баг-трекер и предложения**: [Issues](https://github.com/daniilsukhanoff-hub/corporate-contacts/issues)
+
