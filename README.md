@@ -171,6 +171,6 @@ xdg-open overview.html
 ## 👨‍💻 Автор
 
 - **Разработчик**: [Kupfermann][https://github.com/kupfermann707](https://github.com/kupfermann707/corporate-contacts)
-- **Репозиторий проекта**: [https://github.com/daniilsukhanoff-hub/corporate-contacts](https://github.com/daniilsukhanoff-hub/corporate-contacts)](https://github.com/kupfermann707/corporate-contacts)
+- **Репозиторий проекта**: (https://github.com/kupfermann707/corporate-contacts)
 - **Баг-трекер и предложения**: [Issues](https://github.com/kupfermann707/corporate-contacts/issues)
 
