@@ -7,6 +7,9 @@
 [![Tests](https://img.shields.io/badge/Tests-35%2F35_Passed-brightgreen.svg)](#тестирование)
 [![Package](https://img.shields.io/badge/Package-.deb_AMD64-red.svg?logo=debian)](#быстрый-старт)
 
+<img width="974" height="921" alt="image" src="https://github.com/user-attachments/assets/b13ad02c-0e2c-4f29-a768-ea1fcdc54194" />
+
+
 **Corporate Contacts** — защищённая корпоративная адресная книга и телефонный справочник сотрудников. Приложение сочетает нативный десктопный клиент на **Rust / GTK4 / Libadwaita**, встроенный защищённый веб-сервер **HTTPS (TLS 1.2/1.3)** с интерфейсом в стиле **Google Material 3 Dark Theme**, прямую синхронизацию с **PostgreSQL** по нативному Wire-протоколу и полный комплекс технических мер защиты по **152-ФЗ «О персональных данных»** (Приказ ФСТЭК № 21).
 
 ---
