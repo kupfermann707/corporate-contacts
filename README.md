@@ -170,7 +170,7 @@ xdg-open overview.html
 
 ## 👨‍💻 Автор
 
-- **Разработчик**: [Даниил Суханов (daniilsukhanoff-hub)](https://github.com/daniilsukhanoff-hub)
+- **Разработчик**: [Kupfermann (daniilsukhanoff-hub)](https://github.com/daniilsukhanoff-hub)
 - **Репозиторий проекта**: [https://github.com/daniilsukhanoff-hub/corporate-contacts](https://github.com/daniilsukhanoff-hub/corporate-contacts)
 - **Баг-трекер и предложения**: [Issues](https://github.com/daniilsukhanoff-hub/corporate-contacts/issues)
 
